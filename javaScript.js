@@ -1,4 +1,4 @@
-const bookAdd = document.querySelector('#bookAdd');
+const bookData = document.querySelector('#bookData');
 const library = document.querySelector('#library');
 
 let myLibrary = [];
@@ -16,7 +16,7 @@ function book(title, author, pages, read) {
 }
 
 function addBookToLibrary (book) {
-  myLibrary.push(book)
+  const book = new book(title, author, pages, read)
 }
 
 function displayLibrary () {
@@ -25,11 +25,14 @@ function displayLibrary () {
   }
 }
 
+/*
 let Dune = new book('Dune','Frank Herbert', '900', 'read');
 let snowCrash = new book('Snow Crash', 'Neil Stephenson', '500', 'not read');
+let OhThePlacesYoullGo = new book("Oh the Places You'll Go", "Dr.Seuss", "25", "read");
 
 addBookToLibrary(Dune);
 addBookToLibrary(snowCrash);
+addBookToLibrary(OhThePlacesYoullGo);
 
 displayLibrary();
-
+*/

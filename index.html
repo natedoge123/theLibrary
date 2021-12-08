@@ -2,7 +2,7 @@
 
 <html>
   <head>
-    <title>WEBSITE NAME</title>
+    <title>Library</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css">
     <script src="javaScript.js" defer></script>
@@ -11,11 +11,27 @@
   <body>
     <h1> Library </h1>
 
-    <div id='bookAdd'>
-      <button id="addBook" onclick='book()'>Add Book</button>
+    <div id='bookData'>
+      <form>
+        <label for="title">Title</label><br>
+        <input type="text" id="title" name="title"><br>
+        <label for="author">Author</label><br>
+        <input type="text" id="author" name="author"><br>
+        <label for="pages">Page Count</label><br>
+        <input type="text" id="pages" name="pages"><br>
+        <input type="radio" id="read" name="bookStatus" value="read">
+        <label for="read">Have read the book</label>
+        <input type="radio" id="notRead" name="bookStatus" value="notRead">
+        <label for=notRead>Have not read the book</label><br>
+        <input type="submit" value="Add Book to Library"><br>
+      </form>
     </div>
 
-    <div id="library">
+    <div>
+      <button id='' onclick='displayLibrary()'>Print Library to Console</button>
+    </div>
+
+    <div id='library'>
       <div></div>
     </div>
 

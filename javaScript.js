@@ -1,5 +1,6 @@
 const bookData = document.querySelector('#bookData');
 const library = document.querySelector('#library');
+const addNewBook = document.querySelector('#addNewBook');
 
 let myLibrary = [];
 
@@ -10,13 +11,29 @@ function book(title, author, pages, read) {
   this.read = read;
   
   this.information = function() {
-    let information = (title + ' by ' + author + ', ' + pages + ' pages,  ' + read)
+    let information = (title + ' by ' + author + ', ' + pages + ' pages,  ' + read);
     return information;
   }
 }
+ 
+function addBookToArray(Book) {
+  myLibrary.push(Book)
+}
 
-function addBookToLibrary (book) {
-  const book = new book(title, author, pages, read)
+function addBookToLibrary () {
+  let data = document.getElementById("bookData");
+  let text = '';
+  
+  for (let i = 0; i < data.length; i++) {
+    if (data.elements[i].type == "text") {
+      text += data.elements[i].value + ",";
+  } else if (data.elements[i].type == "checkbox" && data.elements[i].checked == true) {
+      text += "read";
+  } else {
+      text += "not read";
+  }
+  }
+  return text;
 }
 
 function displayLibrary () {
@@ -25,14 +42,11 @@ function displayLibrary () {
   }
 }
 
-/*
-let Dune = new book('Dune','Frank Herbert', '900', 'read');
-let snowCrash = new book('Snow Crash', 'Neil Stephenson', '500', 'not read');
-let OhThePlacesYoullGo = new book("Oh the Places You'll Go", "Dr.Seuss", "25", "read");
+addNewBook.addEventListener('click', function(event) {
+  let addedBook = addBookToLibrary();
+  let parsedNewestBook = addedBook.split(",");
+  let newBook = new book(parsedNewestBook[0], parsedNewestBook[1], parsedNewestBook[2], parsedNewestBook[3]);
+  addBookToArray(newBook);
+  document.getElementById("bookData").reset();
+});
 
-addBookToLibrary(Dune);
-addBookToLibrary(snowCrash);
-addBookToLibrary(OhThePlacesYoullGo);
-
-displayLibrary();
-*/

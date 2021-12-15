@@ -2,34 +2,33 @@
 
 <html>
   <head>
-    <title>Library</title>
+    <title>Die Bibliothek</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css">
     <script src="javaScript.js" defer></script>
   </head>
 
   <body>
-    <h1> Library </h1>
+    <h1>Die Bibliothek</h1>
 
-    <div id='bookData'>
-      <form>
+    <div>
+      <form id="bookData" method="get">
         <label for="title">Title</label><br>
         <input type="text" id="title" name="title"><br>
         <label for="author">Author</label><br>
         <input type="text" id="author" name="author"><br>
         <label for="pages">Page Count</label><br>
         <input type="text" id="pages" name="pages"><br>
-        <input type="radio" id="read" name="bookStatus" value="read">
-        <label for="read">Have read the book</label>
-        <input type="radio" id="notRead" name="bookStatus" value="notRead">
-        <label for=notRead>Have not read the book</label><br>
-        <input type="submit" value="Add Book to Library"><br>
+        <label for="read">Have you read the book?</label><br>
+        <input type="checkbox" id="read" name="read">
       </form>
+      <button id="addNewBook" > Add Book to Library </button>
     </div>
 
     <div>
       <button id='' onclick='displayLibrary()'>Print Library to Console</button>
     </div>
+    
 
     <div id='library'>
       <div></div>

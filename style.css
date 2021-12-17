@@ -1,0 +1,8 @@
+#library {
+  display: flex;
+  flex-direction: row;
+}
+
+#library div {
+  outline: 1px solid black;
+}

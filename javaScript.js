@@ -57,7 +57,7 @@ function displayLibrary () {
     newBookDisplay.appendChild(newBookPages);
     newBookDisplay.appendChild(newBookRead);
 
-    newBookDisplay.setAttribute(number, i);
+    newBookDisplay.setAttribute('number', i);
 
     library.appendChild(newBookDisplay);
   }

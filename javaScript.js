@@ -1,6 +1,11 @@
 const bookData = document.querySelector('#bookData');
 const library = document.querySelector('#library');
 const addNewBook = document.querySelector('#addNewBook');
+const removeallBooks = document.querySelector('#removeAllBooks');
+
+//
+// Backside Functions
+//
 
 let myLibrary = [];
 
@@ -16,28 +21,25 @@ function book(title, author, pages, read) {
   }
 }
  
-function addBookToArray(Book) {
-  myLibrary.push(Book)
-}
-
 function addBookToLibrary () {
   let data = document.getElementById("bookData");
-  let text = '';
   
-  for (let i = 0; i < data.length; i++) {
-    if (data.elements[i].type == "text") {
-      text += data.elements[i].value + ",";
-  } else if (data.elements[i].type == "checkbox" && data.elements[i].checked == true) {
-      text += "read";
-  } else {
-      text += "not read";
-  }
-  }
-  return text;
+  let title = data.elements[0].value;
+  let author = data.elements[1].value;
+  let pages = data.elements[2].value;
+  let read = data.elements[3].checked; 
+
+  let newBook = new book(title, author, pages, read);
+
+  return newBook;
+}
+
+function appendLibrary(book) {
+  myLibrary.push(book)
 }
 
 function displayLibrary () {
-
+  reloadLibrary();
   for(let i = 0; i < myLibrary.length; i++) {
     const newBookDisplay = document.createElement("div");
     const newBookTitle = document.createElement("p");
@@ -55,16 +57,37 @@ function displayLibrary () {
     newBookDisplay.appendChild(newBookPages);
     newBookDisplay.appendChild(newBookRead);
 
+    newBookDisplay.setAttribute(number, i);
+
     library.appendChild(newBookDisplay);
   }
 }
 
+function reloadLibrary () {
+  while(library.firstChild) {
+    library.removeChild(library.lastChild);
+  }
+}
+
+function removeAllBooksLibrary () {
+  myLibrary = {};
+  reloadLibrary();
+}
+
+function changeRead (number) {
+  myLibrary[number].read != myLibrary[number].read;
+}
+//
+// Button Functions
+//
+
 addNewBook.addEventListener('click', function(event) {
-  let addedBook = addBookToLibrary();
-  let parsedNewestBook = addedBook.split(",");
-  let newBook = new book(parsedNewestBook[0], parsedNewestBook[1], parsedNewestBook[2], parsedNewestBook[3]);
-  addBookToArray(newBook);
+  let newBook = addBookToLibrary();
+  appendLibrary(newBook);
   document.getElementById("bookData").reset();
+  displayLibrary();
 });
 
-
+removeAllBooks.addEventListener('click', function(event) {
+  removeAllBooksLibrary();
+});

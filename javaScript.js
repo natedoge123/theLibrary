@@ -3,6 +3,9 @@ const library = document.querySelector('#library');
 const addNewBook = document.querySelector('#addNewBook');
 const removeallBooks = document.querySelector('#removeAllBooks');
 
+const removeIndBook = document.querySelector('#removeIndBook');
+const changeBookRead = document.querySelector('#changeBookRead');
+
 //
 // Backside Functions
 //
@@ -10,6 +13,7 @@ const removeallBooks = document.querySelector('#removeAllBooks');
 let myLibrary = [];
 
 function book(title, author, pages, read) {
+
   this.title = title;
   this.author = author;
   this.pages = pages;
@@ -46,18 +50,26 @@ function displayLibrary () {
     const newBookAuthor = document.createElement("p");
     const newBookPages = document.createElement("p");
     const newBookRead = document.createElement("p");
+    const newBookRemoveBook = document.createElement("button");
+    const newBookChangeBookStatus = document.createElement("button");
 
     newBookTitle.textContent = myLibrary[i].title;
     newBookAuthor.textContent = myLibrary[i].author;
     newBookPages.textContent = myLibrary[i].pages;
     newBookRead.textContent = myLibrary[i].read;
+    newBookRemoveBook.textContent = "Remove Book";
+    newBookChangeBookStatus.textContent = "Read?";
 
     newBookDisplay.appendChild(newBookTitle);
     newBookDisplay.appendChild(newBookAuthor);
     newBookDisplay.appendChild(newBookPages);
     newBookDisplay.appendChild(newBookRead);
 
-    newBookDisplay.setAttribute('number', i);
+    newBookDisplay.appendChild(newBookRemoveBook);
+    newBookDisplay.appendChild(newBookChangeBookStatus);
+
+    newBookRemoveBook.setAttribute('name', i);
+    newBookChangeBookStatus.setAttribute('name', i);
 
     library.appendChild(newBookDisplay);
   }
@@ -74,9 +86,14 @@ function removeAllBooksLibrary () {
   reloadLibrary();
 }
 
-function changeRead (number) {
-  myLibrary[number].read != myLibrary[number].read;
+function removeIndiBook () {
+  let bookNumber = 1 
 }
+
+function changeBookStatus () {
+  let bookstatus = 1
+}
+
 //
 // Button Functions
 //
@@ -91,3 +108,11 @@ addNewBook.addEventListener('click', function(event) {
 removeAllBooks.addEventListener('click', function(event) {
   removeAllBooksLibrary();
 });
+
+library.addEventListener('click', function(event) {
+  bookInt = event.target.name
+  myLibrary.splice(bookInt, 1)
+  reloadLibrary()
+  displayLibrary()
+});
+

@@ -58,7 +58,7 @@ function displayLibrary () {
     newBookPages.textContent = myLibrary[i].pages;
     newBookRead.textContent = myLibrary[i].read;
     newBookRemoveBook.textContent = "Remove Book";
-    newBookChangeBookStatus.textContent = "Read?";
+    newBookChangeBookStatus.textContent = "Read?";    
 
     newBookDisplay.appendChild(newBookTitle);
     newBookDisplay.appendChild(newBookAuthor);
@@ -67,9 +67,13 @@ function displayLibrary () {
 
     newBookDisplay.appendChild(newBookRemoveBook);
     newBookDisplay.appendChild(newBookChangeBookStatus);
+   
+    newBookRemoveBook.setAttribute('name', 'remove');
+    newBookRemoveBook.setAttribute('slot', i);
+    newBookChangeBookStatus.setAttribute('name', 'change');
+    newBookChangeBookStatus.setAttribute('slot', i);
 
-    newBookRemoveBook.setAttribute('name', i);
-    newBookChangeBookStatus.setAttribute('name', i);
+    newBookDisplay.setAttribute('data', i);
 
     library.appendChild(newBookDisplay);
   }
@@ -79,19 +83,6 @@ function reloadLibrary () {
   while(library.firstChild) {
     library.removeChild(library.lastChild);
   }
-}
-
-function removeAllBooksLibrary () {
-  myLibrary = {};
-  reloadLibrary();
-}
-
-function removeIndiBook () {
-  let bookNumber = 1 
-}
-
-function changeBookStatus () {
-  let bookstatus = 1
 }
 
 //
@@ -106,13 +97,24 @@ addNewBook.addEventListener('click', function(event) {
 });
 
 removeAllBooks.addEventListener('click', function(event) {
-  removeAllBooksLibrary();
+  myLibrary = [];
+  reloadLibrary();
 });
 
 library.addEventListener('click', function(event) {
-  bookInt = event.target.name
-  myLibrary.splice(bookInt, 1)
-  reloadLibrary()
-  displayLibrary()
-});
+  buttonPressed = event.originalTarget.name;
+  console.log(event.originalTarget);
+  bookInt = event.originalTarget.slot;
 
+  if (buttonPressed == 'remove') {
+    myLibrary.splice(bookInt, 1);
+  } else if (buttonPressed == 'change') {
+    myLibrary[bookInt].read = !myLibrary[bookInt].read;
+  } else {
+    one = 1;
+  }
+  
+
+  reloadLibrary();
+  displayLibrary();  
+});
